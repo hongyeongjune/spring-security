@@ -10,9 +10,13 @@ import java.security.Principal;
 public class SampleController {
 
     @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("message", "Hello Spring Security");
-
+    public String index(Model model, Principal principal) {
+        if(principal == null) {
+            model.addAttribute("message", "Hello Spring Security");
+        }
+        else {
+            model.addAttribute("meessage", "hello" + principal.getName());
+        }
         return "index";
     }
 
