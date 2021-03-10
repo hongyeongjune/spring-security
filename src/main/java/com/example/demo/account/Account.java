@@ -1,6 +1,7 @@
 package com.example.demo.account;
 
 import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,5 +30,9 @@ public class Account {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public void encodePassword(PasswordEncoder password) {
+        this.password = password.encode(this.password);
     }
 }
